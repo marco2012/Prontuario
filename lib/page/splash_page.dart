@@ -35,26 +35,26 @@ class _SplashPageState extends State<SplashPage> {
             ),
             child: Stack(
               children: <Widget>[
-                Positioned(
-                    top: 150,
-                    left: 50,
-                    right: 50,
-                    child: Text(
-                      "Prontuario \nGuardie Zoofile",
-                      style: Theme.of(context).textTheme.headline4.copyWith(
-                        fontWeight: FontWeight.w900,
-                        height: 1.5,
-                        color: Colors.white,
-//                        shadows: <Shadow>[
-//                          Shadow(
-//                            offset: Offset(2.0, 2.0),
-//                            blurRadius: 4.0,
-//                            color: Color.fromARGB(128, 0, 0, 0),
-//                          ),
-//                        ],
-                      ),
-                    ),
-                ),
+//                Positioned(
+//                    top: 150,
+//                    left: 50,
+//                    right: 50,
+//                    child: Text(
+//                      "Prontuario \nGuardie Zoofile",
+//                      style: Theme.of(context).textTheme.headline4.copyWith(
+//                        fontWeight: FontWeight.w900,
+//                        height: 1.5,
+//                        color: Colors.white,
+////                        shadows: <Shadow>[
+////                          Shadow(
+////                            offset: Offset(2.0, 2.0),
+////                            blurRadius: 4.0,
+////                            color: Color.fromARGB(128, 0, 0, 0),
+////                          ),
+////                        ],
+//                      ),
+//                    ),
+//                ),
                 Positioned(
                   top: 380,
                   left: 50,

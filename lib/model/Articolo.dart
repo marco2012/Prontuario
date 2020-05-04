@@ -5,7 +5,8 @@ class Articolo {
   final String titolo;
   final String testo;
   final String sanzione;
-  Articolo(this.articolo, this.titolo, this.testo, this.sanzione);
+  final String comune;
+  Articolo(this.articolo, this.titolo, this.testo, this.sanzione, this.comune);
 
   factory Articolo.fromJson(List<dynamic> json){
     return Articolo(
@@ -13,6 +14,7 @@ class Articolo {
       json[1].toString(),
       json[2].toString(),
       json[3].toString(),
+      json[4].toString(),
     );
   }
 }

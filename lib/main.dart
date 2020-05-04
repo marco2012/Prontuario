@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'constants.dart';
 
-void main() => runApp(myApp());
+void main() {
+  runApp(myApp());
+}
 
 class myApp extends StatefulWidget {
   @override

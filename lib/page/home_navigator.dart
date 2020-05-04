@@ -14,7 +14,7 @@ class HomeNavigator extends StatefulWidget {
 class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 1;
 
-  List<Widget> _pages = [SplashPage(), HomePage(), TimePreferencesWidget()];
+  List<Widget> _pages = [TimePreferencesWidget(), HomePage(), Center(child: Text('Todo'))];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
         initialActiveIndex: _currentPage,
         style: TabStyle.fixedCircle,
         items: <TabItem>[
-          TabItem(icon: Icons.history, title: ''),
+          TabItem(icon: Icons.home, title: ''),
           TabItem(icon: Icons.book, title: ''),
           TabItem(icon: Icons.settings, title: ''),
         ],

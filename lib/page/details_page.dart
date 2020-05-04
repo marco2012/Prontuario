@@ -8,6 +8,7 @@ import '../constants.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Articolo articolo;
+
   DetailsScreen(this.articolo);
 
   @override
@@ -40,7 +41,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.articolo.articolo),
+          title: Text("Articolo ${widget.articolo.articolo}"),
           backgroundColor: colorPrimary,
         ),
         body: Padding(
@@ -50,6 +51,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: 12,
+                  ),
                   Text(
                     widget.articolo.titolo,
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
@@ -61,28 +65,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Material(
-                        borderRadius: BorderRadius.circular(24),
-                        color: Colors.white,
-                        elevation: 4,
-                        shadowColor: Colors.black38,
-                        child: InkWell(
-                          onTap: () {},
-                          borderRadius: BorderRadius.circular(24),
-                          child: Container(
-                            height: 48,
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Center(
-                              child: Text(
-                                widget.articolo.articolo,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: colorParagraph),
+                      Row(
+                        children: <Widget>[
+                          Material(
+                            borderRadius: BorderRadius.circular(24),
+                            color: Colors.white,
+                            elevation: 4,
+                            shadowColor: Colors.black38,
+                            child: InkWell(
+                              onTap: () {},
+                              borderRadius: BorderRadius.circular(24),
+                              child: Container(
+                                height: 48,
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                SvgPicture.asset(
+                                "assets/icons/city.svg",
+                                ), // icon
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Comune di ${widget.articolo.comune}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: colorParagraph),
+                                    ), // text
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
+                        ],
+                      ),
                     ],
                   ),
                   SizedBox(

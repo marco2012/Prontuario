@@ -5,12 +5,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../MakeCall.dart';
 import '../constants.dart';
+import '../utils.dart';
 import 'details_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -24,6 +27,14 @@ class _MyHomePageState extends State<HomePage> {
     return "assets/images/dogs/dog$rng.jpg";
   }
 
+  String comune = '';
+  _loadComune() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      comune = (prefs.getString('comune') ?? '');
+    });
+  }
+
   List<Articolo> articoli = List();
   List<Articolo> filteredArticoli = List();
 
@@ -31,7 +42,13 @@ class _MyHomePageState extends State<HomePage> {
     MakeCall().firebaseCalls(databaseReference).then((articoliFromServer) => {
           setState(() {
             articoliFromServer.removeAt(0);
-            articoli = articoliFromServer;
+            if (comune != '')
+              articoli = articoliFromServer
+                  .where(
+                      (a) => (a.comune.toLowerCase() == comune.toLowerCase()))
+                  .toList();
+            else
+              articoli = articoliFromServer;
             filteredArticoli = articoli;
           })
         });
@@ -40,6 +57,7 @@ class _MyHomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _loadComune();
     _getData();
     bg_image = getBackgroundImage();
   }
