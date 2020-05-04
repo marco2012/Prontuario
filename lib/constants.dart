@@ -11,3 +11,6 @@ const kHeadingTextStyle = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.w600,
 );
+
+const colorParagraph2 = Color(0xFF758291);
+const colorPrimary = Color(0xFFE11E3C);

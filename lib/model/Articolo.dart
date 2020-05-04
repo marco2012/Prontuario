@@ -9,10 +9,10 @@ class Articolo {
 
   factory Articolo.fromJson(List<dynamic> json){
     return Articolo(
-      json[0] as String,
-      json[1] as String,
-      json[2] as String,
-      json[3] as String,
+      json[0].toString(),
+      json[1].toString(),
+      json[2].toString(),
+      json[3].toString(),
     );
   }
 }

@@ -14,15 +14,15 @@ class BottomNavBar extends StatelessWidget {
       height: 80,
       color: Colors.white,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
+//          BottomNavItem(
+//            title: "Today",
+//            svgScr: "assets/icons/calendar.svg",
+//          ),
           BottomNavItem(
-            title: "Today",
-            svgScr: "assets/icons/calendar.svg",
-          ),
-          BottomNavItem(
-            title: "Categorie",
-            svgScr: "assets/icons/gym.svg",
+            title: "Articoli",
+            svgScr: "assets/icons/courthouse.svg",
             isActive: true,
           ),
           BottomNavItem(
@@ -58,6 +58,7 @@ class BottomNavItem extends StatelessWidget {
           SvgPicture.asset(
             svgScr,
             color: isActive ? kActiveIconColor : kTextColor,
+            height: 30,
           ),
           Text(
             title,
