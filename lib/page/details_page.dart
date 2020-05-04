@@ -15,6 +15,26 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  final double fontSize = 16;
+
+  Widget titleRow(String num, String text) {
+    return Row(
+      children: <Widget>[
+        Text(
+          num,
+          style: TextStyle(color: colorParagraph2, fontSize: fontSize),
+        ),
+        SizedBox(
+          width: 8,
+        ),
+        Text(
+          text,
+          style: TextStyle(color: colorPrimary, fontSize: fontSize),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -25,102 +45,109 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                widget.articolo.titolo,
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+          child: Container(
+            child: new SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Text(
+                    widget.articolo.titolo,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Material(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Colors.white,
+                        elevation: 4,
+                        shadowColor: Colors.black38,
+                        child: InkWell(
+                          onTap: () {},
+                          borderRadius: BorderRadius.circular(24),
+                          child: Container(
+                            height: 48,
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: Center(
+                              child: Text(
+                                widget.articolo.articolo,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: colorParagraph),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
                   Material(
-                    borderRadius: BorderRadius.circular(24),
                     color: Colors.white,
                     elevation: 4,
                     shadowColor: Colors.black38,
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(24),
-                      child: Container(
-                        height: 48,
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                          child: Text(
-                            widget.articolo.articolo,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: colorParagraph),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Material(
-                color: Colors.white,
-                elevation: 4,
-                shadowColor: Colors.black38,
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(12),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(12),
+                      child: Column(
                         children: <Widget>[
-                          Text(
-                            '1',
-                            style: TextStyle(color: colorParagraph2),
+                          titleRow('1', 'Articolo'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  widget.articolo.testo,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                      color: colorParagraph,
+                                      fontSize: fontSize),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
-                            width: 8,
+                            height: 8,
                           ),
-                          Text(
-                            widget.articolo.articolo,
-                            style: TextStyle(
-                              color: colorPrimary,
+                          Divider(),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          titleRow('2', 'Sanzioni'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16),
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  widget.articolo.sanzione,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black87,
+                                      fontSize: fontSize),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 12,
-                            ),
-//                            Text(
-//                              'Yazma, çizme vb. işlerde kullanılan çeşitli biçimlerde araç:',
-//                              style: TextStyle(
-//                                  fontWeight: FontWeight.w600,
-//                                  color: Colors.black87),
-//                            ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                            Text(
-                              widget.articolo.testo,
-                              style: TextStyle(color: Colors.black87, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ));
   }

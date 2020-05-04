@@ -45,13 +45,13 @@ class _SplashPageState extends State<SplashPage> {
                         fontWeight: FontWeight.w900,
                         height: 1.5,
                         color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(4.0, 4.0),
-                            blurRadius: 4.0,
-                            color: Color.fromARGB(128, 0, 0, 0),
-                          ),
-                        ],
+//                        shadows: <Shadow>[
+//                          Shadow(
+//                            offset: Offset(2.0, 2.0),
+//                            blurRadius: 4.0,
+//                            color: Color.fromARGB(128, 0, 0, 0),
+//                          ),
+//                        ],
                       ),
                     ),
                 ),

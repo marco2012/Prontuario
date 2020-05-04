@@ -3,6 +3,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import 'comuni_page.dart';
 import 'home_page.dart';
 
 class HomeNavigator extends StatefulWidget {
@@ -13,7 +14,7 @@ class HomeNavigator extends StatefulWidget {
 class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 1;
 
-  List<Widget> _pages = [Center(child: Text('test')), HomePage(), Center(child: Text('Impostazioni'))];
+  List<Widget> _pages = [SplashPage(), HomePage(), TimePreferencesWidget()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
