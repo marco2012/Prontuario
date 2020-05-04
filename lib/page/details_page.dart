@@ -3,7 +3,7 @@ import 'package:Prontuario_Guardie_Zoofile/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Articolo articolo;
@@ -23,7 +23,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
         title: Text(widget.articolo.articolo),
         backgroundColor: colorPrimary,
       ),
-      bottomNavigationBar: BottomNavBar(),
       body: Stack(
         children: <Widget>[
 //          Container(

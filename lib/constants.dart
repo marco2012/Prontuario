@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+final String title = 'Prontuario Guardie Zoofile';
+final String appName = title;
 const kBackgroundColor = Color(0xFFF8F8F8);
 const kActiveIconColor = Color(0xFFE68342);
 const kTextColor = Color(0xFF222B45);
@@ -14,3 +16,7 @@ const kHeadingTextStyle = TextStyle(
 
 const colorParagraph2 = Color(0xFF758291);
 const colorPrimary = Color(0xFFE11E3C);
+
+//region Page
+const String pageSplash = "/";
+const String pageHome = "/home";
