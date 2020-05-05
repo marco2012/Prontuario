@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,6 +32,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                 articoliFromServer.removeAt(0);
                 comuni =
                     articoliFromServer.map((a) => a.comune).toSet().toList();
+                comuni.sort((a, b) => a.toString().compareTo(b.toString()));
                 comuni.insert(0, "Tutti");
               })
             });
@@ -178,8 +180,34 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                   ],
                 ),
               ),
-              Column(
-                children: createRadioListUsers(),
+              Container(
+                padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: DropdownButton(
+                  isExpanded: true,
+                  hint: new Text("Seleziona comune"),
+                  underline: SizedBox(),
+                  icon: SvgPicture.asset(
+                    "assets/icons/city.svg",
+                    height: 30,
+                  ),
+                  value: selectedComune,
+                  items: comuni.map((value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (chosenComune) {
+                    setState(() {
+                      selectedComune = chosenComune;
+                    });
+                    SharedPreferences.getInstance()
+                        .then((pref) => pref.setString('comune', chosenComune));
+                  },
+                ),
               ),
             ],
           ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
+import '../utils.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Articolo articolo;
@@ -40,7 +41,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Articolo ${widget.articolo.articolo}"),
+          title: Text("Articolo ${widget.articolo.articolo.capitalize()}"),
           backgroundColor: colorPrimary,
         ),
         body: Padding(
@@ -58,7 +59,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 12,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +104,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 18,
                   ),
                   Material(
                     color: Colors.white,
@@ -151,7 +152,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     height: 12,
                                   ),
                                   SelectableText(
-                                    widget.articolo.sanzione,
+                                    widget.articolo.sanzione.capitalize(),
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,

@@ -15,8 +15,8 @@ class HomeNavigator extends StatefulWidget {
 }
 
 class _HomeNavigatorState extends State<HomeNavigator> {
-  int _currentPage = 1;
-  List<Widget> _pages = [HomePage2(), HomePage(), DoctorsInfo()];
+  int _currentPage = 0;
+  List<Widget> _pages = [HomePage2(), DoctorsInfo()];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
         initialActiveIndex: _currentPage,
         style: TabStyle.reactCircle,
         items: <TabItem>[
-          TabItem(icon: Icons.home, title: ''),
+//          TabItem(icon: Icons.home, title: ''),
           TabItem(icon: Icons.book, title: ''),
           TabItem(icon: Icons.settings, title: ''),
         ],
