@@ -14,9 +14,12 @@ class HomeNavigator extends StatefulWidget {
 class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 1;
 
-  List<Widget> _pages = [TimePreferencesWidget(), HomePage(), Center(child: Text('Todo'))];
+  final ComuniPage comuniPage = new ComuniPage();
+  final HomePage homePage = new HomePage();
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> _pages = [comuniPage, homePage, Center(child: Text('Todo'))];
     return Scaffold(
       bottomNavigationBar: ConvexAppBar(
         color: colorParagraph2,
