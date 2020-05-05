@@ -1,5 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../MakeCall.dart';
+import '../constants.dart';
 
 class DoctorsInfo extends StatefulWidget {
   @override
@@ -7,6 +12,66 @@ class DoctorsInfo extends StatefulWidget {
 }
 
 class _DoctorsInfoState extends State<DoctorsInfo> {
+  String selectedComune;
+
+  _loadComune() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedComune = (prefs.getString('comune') ?? '');
+    });
+  }
+
+  List<String> comuni = ['Caricamento...'];
+
+  Future<void> _getComuni() async {
+    MakeCall()
+        .firebaseCalls(FirebaseDatabase.instance.reference())
+        .then((articoliFromServer) => {
+              setState(() {
+                articoliFromServer.removeAt(0);
+                comuni =
+                    articoliFromServer.map((a) => a.comune).toSet().toList();
+                comuni.insert(0, "Tutti");
+              })
+            });
+  }
+
+  List<Widget> createRadioListUsers() {
+    List<Widget> widgets = [];
+    for (String comune in comuni) {
+      widgets.add(
+        RadioListTile(
+          value: comune,
+          groupValue: selectedComune,
+          title: Text(
+            comune,
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+//          subtitle: Text(user.lastName),
+          onChanged: (currentComune) {
+            setState(() {
+              selectedComune = currentComune;
+            });
+            SharedPreferences.getInstance()
+                .then((pref) => pref.setString('comune', currentComune));
+          },
+          selected: selectedComune == comune,
+          activeColor: colorPrimary,
+        ),
+      );
+    }
+    return widgets;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadComune();
+    _getComuni();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +108,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                           height: 10,
                         ),
                         Text(
-                          "Icaro Onlus",
+                          "Icaro OdV",
                           style: TextStyle(fontSize: 19, color: Colors.grey),
                         ),
                         SizedBox(
@@ -71,7 +136,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                launch("http://www.icaro-onlus.net/");
+                                launch("https://www.icaro-onlus.net/");
                               },
                               child: IconTile(
                                 backColor: Color(0xffEBECEF),
@@ -86,7 +151,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(top: 40, left: 20, right: 20),
+                padding: EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,12 +164,22 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                       height: 16,
                     ),
                     Text(
-                      "Icaro OdV è una Associazione che si prefigge lo scopo di proteggere l'Ambiente e gli Animali attraverso l'opera dei suoi Sodali e, in particolare, delle Guardie Ittiche e Zoofile ad essa afferenti che in virtù del loro proficuo impegno ottengono lusinghieri risultati.",
+                      "Icaro OdV è una associazione che si prefigge lo scopo di proteggere l'Ambiente e gli Animali attraverso l'opera dei suoi Sodali e, in particolare, delle Guardie Ittiche e Zoofile ad essa afferenti che in virtù del loro proficuo impegno ottengono lusinghieri risultati.",
                       textAlign: TextAlign.justify,
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Comune",
+                      style: TextStyle(fontSize: 22),
+                    ),
                   ],
                 ),
+              ),
+              Column(
+                children: createRadioListUsers(),
               ),
             ],
           ),

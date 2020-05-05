@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import '../constants.dart';
 import 'comuni_page.dart';
 import 'home_page.dart';
+import 'home_page2.dart';
 
 class HomeNavigator extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class HomeNavigator extends StatefulWidget {
 
 class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 1;
-  List<Widget> _pages = [ComuniPage(), HomePage(), DoctorsInfo()];
+  List<Widget> _pages = [HomePage2(), HomePage(), DoctorsInfo()];
 
   @override
   Widget build(BuildContext context) {

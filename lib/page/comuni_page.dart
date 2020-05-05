@@ -22,16 +22,13 @@ class ComuniPageState extends State<ComuniPage> {
   final preferences = SharedPreferences.getInstance();
 
   String selectedComune;
-
   _loadComune() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       selectedComune = (prefs.getString('comune') ?? '');
     });
   }
-
   List<String> comuni = ['Caricamento...'];
-
   Future<void> _getComuni() async {
     MakeCall()
         .firebaseCalls(FirebaseDatabase.instance.reference())
