@@ -1,3 +1,4 @@
+import 'package:Prontuario_Guardie_Zoofile/page/home_page2.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -5,13 +6,16 @@ import '../constants.dart';
 // https://stackoverflow.com/questions/46480221/flutter-floating-action-button-with-speed-dail
 class FabWithIcons extends StatefulWidget {
   FabWithIcons({this.icons, this.onIconTapped});
+
   final List<IconData> icons;
   ValueChanged<int> onIconTapped;
+
   @override
   State createState() => FabWithIconsState();
 }
 
-class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixin {
+class FabWithIconsState extends State<FabWithIcons>
+    with TickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -30,9 +34,10 @@ class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixi
       mainAxisSize: MainAxisSize.min,
       children: List.generate(widget.icons.length, (int index) {
         return _buildChild(index);
-      }).toList()..add(
-        _buildFab(),
-      ),
+      }).toList()
+        ..add(
+          _buildFab(),
+        ),
     );
   }
 
@@ -46,11 +51,8 @@ class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixi
       child: ScaleTransition(
         scale: CurvedAnimation(
           parent: _controller,
-          curve: Interval(
-              0.0,
-              1.0 - index / widget.icons.length / 2.0,
-              curve: Curves.easeOut
-          ),
+          curve: Interval(0.0, 1.0 - index / widget.icons.length / 2.0,
+              curve: Curves.easeOut),
         ),
         child: FloatingActionButton(
           backgroundColor: backgroundColor,
@@ -70,6 +72,7 @@ class FabWithIconsState extends State<FabWithIcons> with TickerProviderStateMixi
 //        } else {
 //          _controller.reverse();
 //        }
+        FocusScope.of(context).requestFocus(searchFocusNode);
       },
       child: Icon(Icons.search),
       elevation: 2.0,

@@ -54,7 +54,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
         );
       },
       child: FloatingActionButton(
-        onPressed: () { print("pressed"); },
+        onPressed: () { },
         child: Icon(Icons.search),
         elevation: 2.0,
       ),

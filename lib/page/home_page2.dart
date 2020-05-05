@@ -14,6 +14,7 @@ import 'details_page.dart';
 String selectedCategorie = "Tutti";
 List<Articolo> articoli = List();
 List<Articolo> filteredArticoli = List();
+var searchFocusNode = new FocusNode();
 
 class HomePage2 extends StatefulWidget {
   @override
@@ -167,6 +168,7 @@ class _HomePageState2 extends State<HomePage2> {
                           color: Color(0xffEFEFEF),
                           borderRadius: BorderRadius.circular(14)),
                       child: TextField(
+                        focusNode: searchFocusNode,
                         decoration: InputDecoration(
                           hintText: "Cerca",
                           icon: Icon(Icons.search),
