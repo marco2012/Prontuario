@@ -171,7 +171,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 25,
                     ),
                     Text(
                       "Comune",
@@ -181,7 +181,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+                padding: EdgeInsets.only(top: 10, left: 22, right: 20),
                 child: DropdownButton(
                   isExpanded: true,
                   hint: new Text("Seleziona comune"),
