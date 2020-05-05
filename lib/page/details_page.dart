@@ -1,5 +1,4 @@
 import 'package:Prontuario_Guardie_Zoofile/model/Articolo.dart';
-import 'package:Prontuario_Guardie_Zoofile/widgets/bottom_nav_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -81,10 +80,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                SvgPicture.asset(
-                                "assets/icons/city.svg",
-                                  height: 35,
-                                ), // icon
+                                    SvgPicture.asset(
+                                      "assets/icons/city.svg",
+                                      height: 35,
+                                    ), // icon
                                     SizedBox(
                                       width: 8,
                                     ),
@@ -108,7 +107,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                   Material(
                     color: Colors.white,
-                    elevation: 4,
+                    elevation: 8,
                     shadowColor: Colors.black38,
                     borderRadius: BorderRadius.circular(8),
                     child: Container(
@@ -124,7 +123,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 SizedBox(
                                   height: 12,
                                 ),
-                                Text(
+                                SelectableText(
                                   widget.articolo.testo,
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(
@@ -144,19 +143,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           titleRow('2', 'Sanzioni'),
                           Padding(
                             padding: const EdgeInsets.only(left: 16),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  widget.articolo.sanzione,
-                                  style: TextStyle(
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  SelectableText(
+                                    widget.articolo.sanzione,
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
-                                      fontSize: fontSize),
-                                ),
-                              ],
+                                      fontSize: fontSize,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

@@ -1,6 +1,8 @@
+import 'package:Prontuario_Guardie_Zoofile/page/settings_page.dart';
 import 'package:Prontuario_Guardie_Zoofile/page/splash_page.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants.dart';
 import 'comuni_page.dart';
@@ -13,13 +15,10 @@ class HomeNavigator extends StatefulWidget {
 
 class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 1;
-
-  final ComuniPage comuniPage = new ComuniPage();
-  final HomePage homePage = new HomePage();
+  List<Widget> _pages = [ComuniPage(), HomePage(), DoctorsInfo()];
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _pages = [comuniPage, homePage, Center(child: Text('Todo'))];
     return Scaffold(
       bottomNavigationBar: ConvexAppBar(
         color: colorParagraph2,
@@ -33,14 +32,17 @@ class _HomeNavigatorState extends State<HomeNavigator> {
           });
         },
         initialActiveIndex: _currentPage,
-        style: TabStyle.fixedCircle,
+        style: TabStyle.reactCircle,
         items: <TabItem>[
           TabItem(icon: Icons.home, title: ''),
           TabItem(icon: Icons.book, title: ''),
           TabItem(icon: Icons.settings, title: ''),
         ],
       ),
-      body: _pages[_currentPage],
+      body: IndexedStack(
+        index: _currentPage,
+        children: _pages,
+      ),
     );
   }
 }

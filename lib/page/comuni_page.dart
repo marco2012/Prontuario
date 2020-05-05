@@ -31,13 +31,15 @@ class ComuniPageState extends State<ComuniPage> {
   }
 
   List<String> comuni = ['Caricamento...'];
+
   Future<void> _getComuni() async {
     MakeCall()
         .firebaseCalls(FirebaseDatabase.instance.reference())
         .then((articoliFromServer) => {
               setState(() {
                 articoliFromServer.removeAt(0);
-                comuni = articoliFromServer.map((a) => a.comune).toSet().toList();
+                comuni =
+                    articoliFromServer.map((a) => a.comune).toSet().toList();
                 comuni.insert(0, "Tutti");
               })
             });
@@ -57,7 +59,12 @@ class ComuniPageState extends State<ComuniPage> {
         RadioListTile(
           value: comune,
           groupValue: selectedComune,
-          title: Text(comune),
+          title: Text(
+            comune,
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
 //          subtitle: Text(user.lastName),
           onChanged: (currentComune) {
             setState(() {
@@ -66,7 +73,7 @@ class ComuniPageState extends State<ComuniPage> {
             preferences.then((pref) => pref.setString('comune', currentComune));
           },
           selected: selectedComune == comune,
-          activeColor: Colors.green,
+          activeColor: colorPrimary,
         ),
       );
     }
@@ -76,17 +83,36 @@ class ComuniPageState extends State<ComuniPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Seleziona comune"),
-        backgroundColor: colorPrimary,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Column(
-            children: createRadioListUsers(),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 70),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Seleziona Comune \ndi interesse",
+                  style: TextStyle(
+                      color: Colors.black87.withOpacity(0.8),
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Column(
+                      children: createRadioListUsers(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

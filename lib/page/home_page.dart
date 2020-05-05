@@ -39,16 +39,19 @@ class _MyHomePageState extends State<HomePage> {
   List<Articolo> filteredArticoli = List();
 
   Future<void> _getData() async {
+    _loadComune();
     MakeCall().firebaseCalls(databaseReference).then((articoliFromServer) => {
           setState(() {
             articoliFromServer.removeAt(0);
-            if (comune != '' && comune != 'Tutti')
+            print(comune);
+            if (comune != '' && comune != 'Tutti') {
               articoli = articoliFromServer
                   .where(
                       (a) => (a.comune.toLowerCase() == comune.toLowerCase()))
                   .toList();
-            else
+            } else {
               articoli = articoliFromServer;
+            }
             filteredArticoli = articoli;
           })
         });
@@ -57,7 +60,6 @@ class _MyHomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _loadComune();
     _getData();
     bg_image = getBackgroundImage();
   }
