@@ -42,7 +42,7 @@ class _MyHomePageState extends State<HomePage> {
     MakeCall().firebaseCalls(databaseReference).then((articoliFromServer) => {
           setState(() {
             articoliFromServer.removeAt(0);
-            if (comune != '')
+            if (comune != '' && comune != 'Tutti')
               articoli = articoliFromServer
                   .where(
                       (a) => (a.comune.toLowerCase() == comune.toLowerCase()))

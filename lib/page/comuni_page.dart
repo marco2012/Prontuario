@@ -30,7 +30,7 @@ class ComuniPageState extends State<ComuniPage> {
     });
   }
 
-  List<String> comuni = [];
+  List<String> comuni = ['Caricamento...'];
   Future<void> _getComuni() async {
     MakeCall()
         .firebaseCalls(FirebaseDatabase.instance.reference())
@@ -38,6 +38,7 @@ class ComuniPageState extends State<ComuniPage> {
               setState(() {
                 articoliFromServer.removeAt(0);
                 comuni = articoliFromServer.map((a) => a.comune).toSet().toList();
+                comuni.insert(0, "Tutti");
               })
             });
   }

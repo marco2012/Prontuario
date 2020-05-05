@@ -59,7 +59,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,6 +83,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   children: <Widget>[
                                 SvgPicture.asset(
                                 "assets/icons/city.svg",
+                                  height: 35,
                                 ), // icon
                                     SizedBox(
                                       width: 8,
