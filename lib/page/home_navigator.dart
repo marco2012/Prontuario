@@ -17,6 +17,12 @@ class _HomeNavigatorState extends State<HomeNavigator> {
   int _currentPage = 0;
   List<Widget> _pages = [HomePage2(), DoctorsInfo()];
 
+  void selectArticoli() {
+    setState(() {
+      _currentPage = 0;
+    });
+  }
+
   Widget _convexAppBar() {
     return ConvexAppBar(
       color: colorParagraph2,
@@ -47,6 +53,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
         return CenterAbout(
           position: Offset(offset.dx, offset.dy - icons.length * 35.0),
           child: FabWithIcons(
+            selectArticoli: selectArticoli,
             icons: icons,
             onIconTapped: (int val) {
             },

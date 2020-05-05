@@ -5,7 +5,8 @@ import '../constants.dart';
 
 // https://stackoverflow.com/questions/46480221/flutter-floating-action-button-with-speed-dail
 class FabWithIcons extends StatefulWidget {
-  FabWithIcons({this.icons, this.onIconTapped});
+  final Function selectArticoli;
+  FabWithIcons({this.icons, this.onIconTapped, this.selectArticoli});
 
   final List<IconData> icons;
   ValueChanged<int> onIconTapped;
@@ -73,6 +74,7 @@ class FabWithIconsState extends State<FabWithIcons>
 //          _controller.reverse();
 //        }
         FocusScope.of(context).requestFocus(searchFocusNode);
+        widget.selectArticoli();
       },
       child: Icon(Icons.search),
       elevation: 2.0,
