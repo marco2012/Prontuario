@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:Prontuario_Guardie_Zoofile/model/Articolo.dart';
-import 'package:Prontuario_Guardie_Zoofile/page/settings_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,13 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState2 extends State<HomePage2> {
+  String bg_image;
+
+  String getBackgroundImage() {
+    var rng = new Random().nextInt(6);
+    return "assets/images/dogs/dog$rng.jpg";
+  }
+
   String comune = '';
 
   _loadComune() async {
@@ -67,6 +73,7 @@ class _HomePageState2 extends State<HomePage2> {
   void initState() {
     super.initState();
     _getData();
+    bg_image = getBackgroundImage();
   }
 
   Widget _buildList() {
@@ -145,8 +152,17 @@ class _HomePageState2 extends State<HomePage2> {
           child: Stack(
             children: <Widget>[
               Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  image: DecorationImage(
+                    image: AssetImage(bg_image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                height: 250,
+              ),
+              Container(
                 height: MediaQuery.of(context).size.height,
-                color: Colors.white,
                 padding: EdgeInsets.symmetric(vertical: 70, horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +170,8 @@ class _HomePageState2 extends State<HomePage2> {
                     Text(
                       "Prontuario \nGuardie Zoofile",
                       style: TextStyle(
-                          color: Colors.black87.withOpacity(0.8),
+//                          color: Colors.black87.withOpacity(0.8),
+                          color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.w600),
                     ),
@@ -192,7 +209,7 @@ class _HomePageState2 extends State<HomePage2> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     Text(
                       "Categorie",
@@ -202,7 +219,7 @@ class _HomePageState2 extends State<HomePage2> {
                           fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Container(
                       height: 30,
