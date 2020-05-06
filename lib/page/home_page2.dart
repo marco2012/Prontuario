@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:Prontuario_Guardie_Zoofile/model/Articolo.dart';
+import 'package:Prontuario_Guardie_Zoofile/widgets/my_header.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState2 extends State<HomePage2> {
+  final TextEditingController _searchController = new TextEditingController();
   String bg_image;
 
   String getBackgroundImage() {
@@ -48,6 +50,10 @@ class _HomePageState2 extends State<HomePage2> {
     });
   }
 
+  void _setData() {
+
+  }
+
   Future<void> _getData() async {
     _loadComune();
     MakeCall()
@@ -55,6 +61,8 @@ class _HomePageState2 extends State<HomePage2> {
         .then((articoliFromServer) => {
               setState(() {
                 articoliFromServer.removeAt(0);
+                articoliFromServer.sort((a, b) =>
+                    a.articolo.toString().compareTo(b.articolo.toString()));
                 _handleCategories(articoliFromServer);
                 if (comune != '' && comune != 'Tutti') {
                   articoli = articoliFromServer
@@ -151,15 +159,9 @@ class _HomePageState2 extends State<HomePage2> {
           },
           child: Stack(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  image: DecorationImage(
-                    image: AssetImage(bg_image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                height: 250,
+              MyHeader(
+                image: bg_image,
+                height: 268,
               ),
               Container(
                 height: MediaQuery.of(context).size.height,
@@ -169,11 +171,17 @@ class _HomePageState2 extends State<HomePage2> {
                   children: <Widget>[
                     Text(
                       "Prontuario \nGuardie Zoofile",
-                      style: TextStyle(
-//                          color: Colors.black87.withOpacity(0.8),
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.headline4.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        shadows: <Shadow>[
+                          Shadow(
+                            offset: Offset(4.0, 4.0),
+                            blurRadius: 4.0,
+                            color: Color.fromARGB(128, 0, 0, 0),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 30,
@@ -186,10 +194,23 @@ class _HomePageState2 extends State<HomePage2> {
                           borderRadius: BorderRadius.circular(14)),
                       child: TextField(
                         focusNode: searchFocusNode,
+                        controller: _searchController,
                         decoration: InputDecoration(
                           hintText: "Cerca",
                           icon: Icon(Icons.search),
                           border: InputBorder.none,
+                          suffixIcon: _searchController.text.length > 0
+                              ? IconButton(
+                                  icon: Icon(Icons.clear),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    FocusScope.of(context)
+                                        .requestFocus(new FocusNode());
+                                    setState(() {
+                                      filteredArticoli = articoli;
+                                    });
+                                  })
+                              : SizedBox(),
                         ),
                         onChanged: (String query) {
                           setState(() {

@@ -71,6 +71,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       bottomNavigationBar: FABBottomAppBar(
         color: Colors.grey,
         selectedColor: colorPrimary,

@@ -38,7 +38,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("Articolo ${widget.articolo.articolo.capitalize()}"),
@@ -83,7 +82,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   children: <Widget>[
                                     SvgPicture.asset(
                                       "assets/icons/city.svg",
-                                      height: 35,
+                                      height: 30,
                                     ), // icon
                                     SizedBox(
                                       width: 8,
@@ -106,65 +105,80 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   SizedBox(
                     height: 18,
                   ),
-                  Material(
-                    color: Colors.white,
-                    elevation: 8,
-                    shadowColor: Colors.black38,
-                    borderRadius: BorderRadius.circular(8),
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        children: <Widget>[
-                          titleRow('1', 'Articolo'),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                SelectableText(
-                                  widget.articolo.testo,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      color: colorParagraph,
-                                      fontSize: fontSize),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Divider(),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          titleRow('2', 'Sanzioni'),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
+                  Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(60)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 4,
+                          offset: Offset(0, 10), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.white,
+                      elevation: 16.0,
+                      shadowColor: Colors.black38,
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(12),
+                        child: Column(
+                          children: <Widget>[
+                            titleRow('1', 'Articolo'),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: Column(
                                 children: <Widget>[
                                   SizedBox(
                                     height: 12,
                                   ),
                                   SelectableText(
-                                    widget.articolo.sanzione.capitalize(),
+                                    widget.articolo.testo,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black87,
-                                      fontSize: fontSize,
-                                    ),
+                                        color: colorParagraph,
+                                        fontSize: fontSize),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Divider(),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            titleRow('2', 'Sanzioni'),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height: 12,
+                                    ),
+                                    SelectableText(
+                                      widget.articolo.sanzione.capitalize(),
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                        fontSize: fontSize,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
