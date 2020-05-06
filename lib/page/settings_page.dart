@@ -22,7 +22,7 @@ class _DoctorsInfoState extends State<DoctorsInfo> {
     });
   }
 
-  List<String> comuni = ['Caricamento...'];
+  List<String> comuni = ['Tutti'];
 
   Future<void> _getComuni() async {
     MakeCall()

@@ -22,6 +22,12 @@ class _HomeNavigatorState extends State<HomeNavigator> {
       _currentPage = 0;
     });
   }
+  bool _visibilityFlag = false;
+  void hideFAB(){
+    setState(() {
+      _visibilityFlag = false;
+    });
+  }
 
   Widget _convexAppBar() {
     return ConvexAppBar(
@@ -46,7 +52,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
   }
 
   Widget _buildFab(BuildContext context) {
-    final icons = [ Icons.sms, Icons.mail, Icons.phone ];
+    final icons = [Icons.sms, Icons.mail, Icons.phone];
     return AnchoredOverlay(
       showOverlay: true,
       overlayBuilder: (context, offset) {
@@ -55,15 +61,15 @@ class _HomeNavigatorState extends State<HomeNavigator> {
           child: FabWithIcons(
             selectArticoli: selectArticoli,
             icons: icons,
-            onIconTapped: (int val) {
-            },
+            onIconTapped: (int val) {},
           ),
         );
       },
-      child: FloatingActionButton(
-        onPressed: () { },
-        child: Icon(Icons.search),
-        elevation: 2.0,
+      child:
+      FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.search),
+          elevation: 2.0,
       ),
     );
   }
